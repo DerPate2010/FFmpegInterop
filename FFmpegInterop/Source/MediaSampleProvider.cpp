@@ -95,7 +95,7 @@ MediaStreamSample^ MediaSampleProvider::GetNextSample(LONGLONG timestampOffset)
 		}
 	}
 
-	if (SUCCEEDED(hr))
+	//if (SUCCEEDED(hr))
 	{
 		// Write the packet out
 		hr = WriteAVPacketToStream(dataWriter, &avPacket);
