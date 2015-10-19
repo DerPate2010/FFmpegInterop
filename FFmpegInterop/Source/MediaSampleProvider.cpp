@@ -100,10 +100,25 @@ MediaStreamSample^ MediaSampleProvider::GetNextSample(LONGLONG timestampOffset)
 		// Write the packet out
 		hr = WriteAVPacketToStream(dataWriter, &avPacket);
 
-		Windows::Foundation::TimeSpan pts = { LONGLONG(av_q2d(m_pAvFormatCtx->streams[m_streamIndex]->time_base) * 10000000 * avPacket.pts) - timestampOffset };
+		//auto adjustedpts = avPacket.pts- 927697002;
+		auto adjustedpts = avPacket.pts - 7610938941;
+		//auto adjustedpts = avPacket.pts-0;
+
+
+		Windows::Foundation::TimeSpan pts = { LONGLONG(av_q2d(m_pAvFormatCtx->streams[m_streamIndex]->time_base) * 10000000 * adjustedpts) };
 		Windows::Foundation::TimeSpan dur = { LONGLONG(av_q2d(m_pAvFormatCtx->streams[m_streamIndex]->time_base) * 10000000 * avPacket.duration) };
 
+		int a = 16;
+		wchar_t buffer[256];
+		swprintf(buffer, 128, L"%I64u\n", adjustedpts);
+
+
+		DebugMessage(buffer);
+
 		sample = MediaStreamSample::CreateFromBuffer(dataWriter->DetachBuffer(), pts);
+		//String^ str = sample->Timestamp.ToString();
+		//
+
 		sample->Duration = dur;
 	}
 
