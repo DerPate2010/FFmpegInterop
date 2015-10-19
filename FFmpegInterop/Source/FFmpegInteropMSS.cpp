@@ -550,10 +550,12 @@ void FFmpegInteropMSS::OnSampleRequested(Windows::Media::Core::MediaStreamSource
 {
 	if (args->Request->StreamDescriptor == audioStreamDescriptor && audioSampleProvider != nullptr)
 	{
+		DebugMessage(L"Get Audio Sample");
 		args->Request->Sample = audioSampleProvider->GetNextSample(mediaStartTime.Duration);
 	}
 	else if (args->Request->StreamDescriptor == videoStreamDescriptor && videoSampleProvider != nullptr)
 	{
+		DebugMessage(L"Get Video Sample");
 		args->Request->Sample = videoSampleProvider->GetNextSample(mediaStartTime.Duration);
 	}
 	else

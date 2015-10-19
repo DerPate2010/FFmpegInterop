@@ -57,7 +57,7 @@ void MediaSampleProvider::SetCurrentStreamIndex(int streamIndex)
 
 MediaStreamSample^ MediaSampleProvider::GetNextSample(LONGLONG timestampOffset)
 {
-	DebugMessage(L"GetNextSample\n");
+	//DebugMessage(L"GetNextSample\n");
 
 	HRESULT hr = S_OK;
 
@@ -129,14 +129,14 @@ HRESULT MediaSampleProvider::DecodeAVPacket(DataWriter^ dataWriter, AVPacket *av
 
 void MediaSampleProvider::PushPacket(AVPacket packet)
 {
-	DebugMessage(L" - PushPacket\n");
+	//DebugMessage(L" - PushPacket\n");
 
 	m_packetQueue.push(packet);
 }
 
 AVPacket MediaSampleProvider::PopPacket()
 {
-	DebugMessage(L" - PopPacket\n");
+	//DebugMessage(L" - PopPacket\n");
 
 	AVPacket avPacket;
 	av_init_packet(&avPacket);
