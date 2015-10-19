@@ -81,6 +81,7 @@ namespace FFmpegInterop
 		MediaSampleProvider^ videoSampleProvider;
 
 		TimeSpan mediaDuration;
+		TimeSpan mediaStartTime;
 		IStream* fileStreamData;
 		unsigned char* fileStreamBuffer;
 		FFmpegReader^ m_pReader;
